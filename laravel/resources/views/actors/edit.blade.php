@@ -10,6 +10,7 @@
             <div class="col s12">
                 <div class="card green lighten-4 ">
                     <div class="card-content black-text center">
+                        <i class="material-icons">info_outline</i><br>
                         <span>{{ Session::get('update') }}</span>
                     </div>
                 </div>

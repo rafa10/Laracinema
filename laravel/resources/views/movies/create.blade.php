@@ -18,7 +18,7 @@
         </div>
     @endif
 
-    <div class="row">
+    <div class="row ">
 
         {{Form::open(array('method' => 'post', 'url' => route('movies_store')))}}
 

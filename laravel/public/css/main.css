@@ -1,0 +1,22 @@
+body{
+    background-color: #e0e0e0;
+}
+
+nav{
+    z-index: 1000;
+    position: fixed;
+    background-color: #212121 !important;
+}
+
+.general{
+    margin-top: 5rem;
+    min-height:100vh;
+
+}
+
+
+footer{
+    border-top:1px solid #CCC ;
+    background-color: #333!important;
+}
+

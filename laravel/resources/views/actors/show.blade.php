@@ -9,7 +9,8 @@
         <div class="col s12">
             <div class="card red lighten-4 ">
                 <div class="card-content black-text center">
-                    <span>Etez vous sur de supprimer l'actors N°: {{$actors->id}}<span>
+                    <i class="material-icons">error_outline</i><br>
+                    <span>Etez vous sur de supprimer ce directors N°: {{$directors->id}}</span>
                 </div>
             </div>
         </div>

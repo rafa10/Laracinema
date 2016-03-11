@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActorsTable extends Migration
+class CreateDuksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,12 @@ class CreateActorsTable extends Migration
      */
     public function up()
     {
-        \Illuminate\Support\Facades\Schema::create('actors', function (Blueprint $table) {
+        Schema::create('ducks', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
 
             $table->timestamps();
         });
@@ -26,6 +30,6 @@ class CreateActorsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('actors');
+        Schema::drop('ducks');
     }
 }

@@ -2,56 +2,94 @@
 
 namespace App\Http\Controllers;
 
-use App\Categorie;
 use App\Directors;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class DirectorsController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Display a listing of the resource.
      */
-    public function lister()
+    public function index()
     {
         $directors = Directors::all();
-        /*dump($categories);*/
-        return view(" directors/lister ", array(
+        
+        return view(" directors/index ", array(
+
             'directors' => $directors
         ));
     }
 
     /**
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function display($id)
-    {
-        $directors = Directors::find($id);
-        /*dump($directors);*/
-        return view(" directors/display ", array(
-            'directors' => $directors
-        ));
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view(" directors/create ");
+        return view('directors/create');
     }
 
     /**
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $directors = Directors::create($request->all());
+
+        Session::flash('create', 'Actors successfully added!');
+
+        return redirect(route('directors_index'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        $directors = Directors::findOrFail($id);
+
+        return view(" directors/show ", compact('directors'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-        return view(" directors/edit ", array(
-            'id' => $id
-        ));
+        $directors = Directors::findOrFail($id);
+
+        return view(" directors/edit ", compact('directors'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        $directors = Directors::findOrFail($id);
+
+        $directors->update($request->all());
+
+        Session::flash('update', 'Directors successfully updated!');
+
+        return redirect(route('directors_edit', $id));
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $directors = Directors::findOrFail($id);
+
+        $directors->delete();
+
+        Session::flash('delete', 'Directors successfully deleted!');
+
+        return redirect(route(('directors_index')));
     }
 }

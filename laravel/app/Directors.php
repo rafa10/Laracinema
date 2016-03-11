@@ -12,4 +12,8 @@ class Directors extends Model
      * @var string
      */
     protected  $table = "directors";
+
+    protected $fillable = ['firstname', 'lastname', 'dob', 'biography', 'image', 'note'];
+
+    protected $dates = ['dob'];
 }

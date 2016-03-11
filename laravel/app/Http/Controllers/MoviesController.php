@@ -110,4 +110,6 @@ class MoviesController extends Controller
 
         return redirect(route(('movies_index')));
     }
+
+
 }

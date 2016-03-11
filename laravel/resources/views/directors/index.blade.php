@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'movies')
+@section('title', 'directors')
 
 @section('table')
 
@@ -31,31 +31,33 @@
     <table>
         <thead>
         <tr>
-            <th data-field="id">Type</th>
-            <th data-field="id">Title</th>
-            <th data-field="price">Description</th>
-            <th data-field="price">langue</th>
+            <th data-field="id">firstname</th>
+            <th data-field="id">Lastname</th>
+            <th data-field="price">Dob</th>
+            <th data-field="price">Note</th>
             <th data-field="price">Image</th>
-            <th data-field="price">Crée</th>
+
+            <th data-field="price">Add</th>
             <th data-field="price">Edit</th>
-            <th data-field="price">delete</th>
-            <th data-field="price">Categorie</th>
+            <th data-field="price">Delete</th>
         </tr>
         </thead>
-        @foreach($movies as $item)
+        @foreach($directors as $item)
         <tbody>
         <tr>
-            <td>{{$item->type}}</td>
-            <td>{{$item->title}}</td>
-            <td>{!! $item->description !!}</td>
-            <td>{{$item->languages}}</td>
-            <td><img src="{{$item->image}}" width=220" height="300"></td>
-            <td><a href="{{route('movies_create')}}"><i class="small material-icons">add</i></a></td>
-            <td><a href="{{route('movies_edit', $item->id)}}"><i class="small material-icons">mode_edit</i></a></td>
-            <td><a href="{{route('movies_show', $item->id)}}"><i class="small material-icons">delete</i></a></td>
-            <td><a href="{{route('categories_index', $item->categories_id)}}"><i class="small material-icons">visibility</i></a></td>
+            <td>{{$item->firstname}}</td>
+            <td>{{$item->lastname}}</td>
+            <td>{{ $item->dob->diffInYears(\Carbon\Carbon::now()) }}</td>
+            <td>{{$item->note}}</td>
+            <td><img src="{{$item->image}}" width="100" height="120"></td>
+
+            <td><a href="{{route('directors_create')}}"><i class="small material-icons">add</i></a></td>
+            <td><a href="{{route('directors_edit', $item->id)}}"><i class="small material-icons">mode_edit</i></a></td>
+            <td><a href="{{route('directors_show', $item->id)}}"><i class="small material-icons">delete</i></a></td>
         </tr>
         </tbody>
         @endforeach
     </table>
 @endsection
+
+
