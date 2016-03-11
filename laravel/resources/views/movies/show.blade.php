@@ -8,7 +8,7 @@
         <div class="col s12">
             <div class="card red lighten-4 ">
                 <div class="card-content black-text center">
-                    <span>Etez vous sur de supprimer ce film : {{$movies->id}}</span>
+                    <span>Etez vous sur de supprimer ce film : {{$movies->id}}<span>
                 </div>
             </div>
         </div>

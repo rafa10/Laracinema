@@ -65,24 +65,39 @@ Route::group(['middleware' => ['web']], function () {
 /*===============================================*/
 Route::group(['prefix' => '/categorie'], function(){
 
-    Route::get('/lister', [
-        'as' => 'categorie_lister',
-        'uses' => 'CategorieController@lister'
+    Route::get('/index', [
+        'as' => 'categorie_index',
+        'uses' => 'CategorieController@index'
     ]);
-
-    Route::get('/display/{id}', [
-        'as' => 'categorie_display',
-        'uses' => 'CategorieController@display'
-    ])->where('id', '[0-9]+');
 
     Route::get('/create', [
         'as' => 'categorie_create',
         'uses' => 'CategorieController@create'
     ]);
 
-    Route::get('/edit', [
+    Route::post('/store', [
+        'as' => 'categorie_store',
+        'uses' => 'CategorieController@store'
+    ]);
+
+    Route::get('/show/{id}', [
+        'as' => 'categorie_show',
+        'uses' => 'CategorieController@show'
+    ])->where('id', '[0-9]+');
+
+    Route::get('/edit/{id}', [
         'as' => 'categorie_edit',
         'uses' => 'CategorieController@edit'
+    ])->where('id', '[0-9]+');
+
+    Route::post('/update/{id}', [
+        'as' => 'categorie_update',
+        'uses' => 'CategorieController@update'
+    ])->where('id', '[0-9]+');
+
+    Route::get('/destroy/{id}', [
+        'as' => 'categorie_destroy',
+        'uses' => 'CategorieController@destroy'
     ])->where('id', '[0-9]+');
 
 });

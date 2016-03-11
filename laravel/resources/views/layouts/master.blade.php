@@ -20,7 +20,7 @@
         <a href="{{url('')}}" class="brand-logo left">&nbsp;&nbsp;Laracinema</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{route('directors_lister')}}">Directors</a></li>
-            <li><a href="{{route('categorie_lister')}}">Catégorie</a></li>
+            <li><a href="{{route('categorie_index')}}">Catégorie</a></li>
             <li><a href="{{route('movies_index')}}">Movies</a></li>
             <li><a href="{{route('actors_index')}}">Actors</a></li>
         </ul>
@@ -30,12 +30,10 @@
 <br/>
 <!-- content -->
 
-<div class="row">
-    <div class="col s12">
-        <div class="card grey lighten-5 ">
-            <div class="card-content black-text">
-                @yield('table')
-            </div>
+<div class="container ">
+    <div class="row">
+        <div class="col s12 ">
+            @yield('table')
         </div>
     </div>
 </div>
@@ -52,7 +50,7 @@
                 <h5 class="white-text">Links</h5>
                 <ul>
                     <li><a class="grey-text text-lighten-3" href="{{url('directors/lister')}}">Directors</a></li>
-                    <li><a class="grey-text text-lighten-3" href="{{url('categorie/lister')}}">Catégories</a></li>
+                    <li><a class="grey-text text-lighten-3" href="{{route('categorie_index')}}">Catégories</a></li>
                     <li><a class="grey-text text-lighten-3" href="{{route('movies_index')}}">Movies</a></li>
                     <li><a class="grey-text text-lighten-3" href="{{route('actors_index')}}">Actors</a></li>
                 </ul>

@@ -3,54 +3,93 @@
 namespace App\Http\Controllers;
 
 use App\Categorie;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class CategorieController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Display a listing of the resource.
      */
-    public function lister()
+    public function index()
     {
-        $categories = Categorie::all();
-        /*dump($categories);*/
-        return view(" categorie/lister ", array(
-            'categories' => $categories
+        $categorie = Categorie::all();
+
+        return view(" categorie/index ", array(
+
+            'categorie' => $categorie
         ));
     }
 
     /**
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function display($id)
-    {
-        $categories = Categorie::find($id);
-        /*dump($categories);*/
-        return view(" categorie/display ", array(
-            'categories' => $categories
-        ));
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View*
+     * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view(" categorie/create ");
+        return view('categorie/create');
     }
 
     /**
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $categorie = Categorie::create($request->all());
+
+        Session::flash('create', 'Catégorie successfully added!');
+
+        return redirect(route('categorie_index'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        $categorie = Categorie::findOrFail($id);
+
+        return view(" categorie/show ", compact('categorie'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-        return view(" categorie/edit ", array(
-            'id' => $id
-        ));
+        $categorie = Categorie::findOrFail($id);
+
+        return view(" categorie/edit ", compact('categorie'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        $categorie = Categorie::findOrFail($id);
+
+        $categorie->update($request->all());
+
+        Session::flash('update', 'Catégorie successfully updated!');
+
+        return redirect(route('categorie_edit', $id));
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $categorie = Categorie::findOrFail($id);
+
+        $categorie->delete();
+
+        Session::flash('delete', 'Catégorie successfully deleted!');
+
+        return redirect(route(('categorie_index')));
     }
 }

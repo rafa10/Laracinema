@@ -3,7 +3,7 @@
 @section('title', 'home')
 
 @section('table')
-
+    <br><br><br><br><br><br>
     <div class="row valign-wrapper">
 
         <div class="col s12 m3">
@@ -23,7 +23,7 @@
                     <img src="{{asset('img/squares.png')}}">
                 </div>
                 <div class="card-action">
-                    <a href="{{route('categorie_lister')}}">Catégorie</a>
+                    <a href="{{route('categorie_index')}}">Catégorie</a>
                 </div>
             </div>
         </div>
@@ -51,5 +51,5 @@
         </div>
 
     </div>
-    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br>
 @endsection

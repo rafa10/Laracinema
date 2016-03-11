@@ -40,8 +40,8 @@ class MoviesController extends Controller
                 'type' => 'required|min:10',
                 'title' => 'required|min:10',
                 'description' => 'required|min:10',
-                '' => 'required',
-                'description' => \'required'
+                'languages' => 'required',
+                'image' => 'required'
             ],
             [
                 'type.required' => 'Le type est obligatoire',
