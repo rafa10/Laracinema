@@ -28,30 +28,30 @@
         </div>
     @endif
 
-    <table>
-        <thead>
+    <table class="bordered  white z-depth-1">
+        <thead class="purple lighten-4">
         <tr>
+            <th data-field="price">Image</th>
             <th data-field="id">Titre</th>
             <th data-field="price">Description</th>
             <th data-field="price">Slug</th>
-            <th data-field="price">Image</th>
 
-            <th data-field="price">Crée</th>
-            <th data-field="price">Edit</th>
-            <th data-field="price">delete</th>
+            <th data-field="action" colspan="3">Action</th>
         </tr>
         </thead>
         @foreach($categories as $item)
             <tbody>
             <tr>
+                <td><img src="{{$item->image}}" width=120" height="170"></td>
                 <td>{{$item->title}}</td>
                 <td>{!! $item->description !!}</td>
                 <td>{{$item->slug}}</td>
-                <td><img src="{{$item->image}}" width=120" height="170"></td>
 
-                <td><a href="{{route('categories_create')}}"><i class="small material-icons">add</i></a></td>
-                <td><a href="{{route('categories_edit', $item->id)}}"><i class="small material-icons">mode_edit</i></a></td>
-                <td><a href="{{route('categories_show', $item->id)}}"><i class="small material-icons">delete</i></a></td>
+                <td>
+                    <a class="btn-floating btn-large waves-effect waves-light green" href="{{route('categories_create')}}"><i class="small material-icons ">add</i></a>
+                    <a class="btn-floating btn-large waves-effect waves-light blue" href="{{route('categories_edit', $item->id)}}"><i class="small material-icons ">mode_edit</i></a>
+                    <a class="btn-floating btn-large waves-effect waves-light red" href="{{route('categories_show', $item->id)}}"><i class="small material-icons">delete</i></a>
+                </td>
             </tr>
             </tbody>
         @endforeach

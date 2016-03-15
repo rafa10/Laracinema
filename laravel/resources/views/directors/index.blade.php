@@ -28,32 +28,32 @@
         </div>
     @endif
 
-    <table>
-        <thead>
+    <table class="bordered white z-depth-1">
+        <thead class="purple lighten-4">
         <tr>
+            <th data-field="price">Image</th>
             <th data-field="id">firstname</th>
             <th data-field="id">Lastname</th>
             <th data-field="price">Dob</th>
             <th data-field="price">Note</th>
-            <th data-field="price">Image</th>
 
-            <th data-field="price">Add</th>
-            <th data-field="price">Edit</th>
-            <th data-field="price">Delete</th>
+            <th data-field="action" colspan="3">Action</th>
         </tr>
         </thead>
         @foreach($directors as $item)
         <tbody>
         <tr>
+            <td><img src="{{$item->image}}" width="100" height="120"></td>
             <td>{{$item->firstname}}</td>
             <td>{{$item->lastname}}</td>
             <td>{{ $item->dob->diffInYears(\Carbon\Carbon::now()) }}</td>
             <td>{{$item->note}}</td>
-            <td><img src="{{$item->image}}" width="100" height="120"></td>
 
-            <td><a href="{{route('directors_create')}}"><i class="small material-icons">add</i></a></td>
-            <td><a href="{{route('directors_edit', $item->id)}}"><i class="small material-icons">mode_edit</i></a></td>
-            <td><a href="{{route('directors_show', $item->id)}}"><i class="small material-icons">delete</i></a></td>
+            <td>
+                <a class="btn-floating btn-large waves-effect waves-light green" href="{{route('directors_create')}}"><i class="small material-icons ">add</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light blue" href="{{route('directors_edit', $item->id)}}"><i class="small material-icons ">mode_edit</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red" href="{{route('directors_show', $item->id)}}"><i class="small material-icons">delete</i></a>
+            </td>
         </tr>
         </tbody>
         @endforeach

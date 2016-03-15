@@ -3,9 +3,18 @@
 @section('title', 'create-actors')
 
 @section('table')
-    <div class="row">
+
+
+
+    <div class="row paddingForm z-depth-1">
 
         {{Form::open(array('method' => 'post', 'url' => route('actors_store')))}}
+
+        <div class="row">
+            <div class="input-field col s12">
+                <h4 class="black-text center">Create actors</h4>
+            </div>
+        </div>
 
         <div class="row">
             <div class="input-field col s6">

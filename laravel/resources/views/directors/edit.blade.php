@@ -4,6 +4,8 @@
 
 @section('table')
 
+
+
     @if(Session::has('update'))
         <div class="row">
             <div class="col s12">
@@ -17,15 +19,15 @@
         </div>
     @endif
 
-    <div class="row">
+    <div class="row paddingForm z-depth-1">
+
+        {{Form::open(array('method' => 'post', 'url' => route('directors_update', $directors)))}}
 
         <div class="row">
             <div class="input-field col s12">
-                <h3 class="grey-text center">Update directors</h3>
-             </div>
+                <h4 class="blackk-text center">Update directors</h4>
+            </div>
         </div>
-
-        {{Form::open(array('method' => 'post', 'url' => route('directors_update', $directors)))}}
 
         <div class="row">
             <div class="input-field col s6">

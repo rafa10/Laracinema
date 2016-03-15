@@ -64,6 +64,26 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'MoviesController@destroy'
         ])->where('id', '[0-9]+');
 
+        route::get('/visible/{id}', [
+            'as'   => 'movies_visible',
+            'uses' => 'MoviesController@visible'
+        ])->where('id', '[0-9]+');
+
+        route::get('/invisible/{id}', [
+            'as'   => 'movies_invisible',
+            'uses' => 'MoviesController@invisible'
+        ])->where('id', '[0-9]+');
+
+        route::get('/cover/{id}', [
+            'as'   => 'movies_cover',
+            'uses' => 'MoviesController@cover'
+        ])->where('id', '[0-9]+');
+
+        route::get('/incover/{id}', [
+            'as'   => 'movies_incover',
+            'uses' => 'MoviesController@incover'
+        ])->where('id', '[0-9]+');
+
     });
 
 /*===============================================*/

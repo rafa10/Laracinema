@@ -5,6 +5,8 @@
 
 @section('table')
 
+
+
     @if(Session::has('update'))
         <div class="row">
             <div class="col s12">
@@ -18,9 +20,15 @@
         </div>
     @endif
 
-    <div class="row">
+    <div class="row paddingForm z-depth-1">
 
         {{Form::open(array('method' => 'post', 'url' => route('actors_update', $actors)))}}
+
+        <div class="row">
+            <div class="input-field col s12">
+                <h4 class="black-text center">Update actors</h4>
+            </div>
+        </div>
 
         <div class="row">
             <div class="input-field col s6">

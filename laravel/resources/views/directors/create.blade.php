@@ -4,13 +4,15 @@
 
 @section('table')
 
-    <div class="row">
+
+
+    <div class="row paddingForm z-depth-1">
 
         {{Form::open(array('method' => 'post', 'url' => route('directors_store')))}}
 
         <div class="row">
             <div class="input-field col s12">
-                <h3 class="grey-text center">Create directors</h3>
+                <h4 class="black-text center">Create directors</h4>
             </div>
         </div>
 

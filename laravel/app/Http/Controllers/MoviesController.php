@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 
+use App\Categories;
 use App\Movies;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class MoviesController extends Controller
@@ -17,7 +19,10 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        $movies = Movies::all();
+        $movies = Movies::paginate(5);
+
+//      pour affichier les catigorires dans film
+        $categories = Movies::find(3)->categories;
 
         return view(" movies/index ", compact('movies'));
     }
@@ -27,7 +32,18 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        return view('movies/create');
+
+        $categories = Categories::all(['id','title']);
+
+        $cat = $categories->toArray();
+        //dd($cat);
+        $tabCat = [];
+
+        foreach ($cat as $value){
+            $tabCat[$value['id']] = $value['title'];
+        }
+
+        return view('movies/create', compact('tabCat'));
     }
 
     /**
@@ -37,8 +53,8 @@ class MoviesController extends Controller
     {
         $this->validate($request,
             [
-                'type' => 'required|min:10',
-                'title' => 'required|min:10',
+                'type' => 'required|min:5',
+                'title' => 'required|min:4',
                 'description' => 'required|min:10',
                 'languages' => 'required',
                 'image' => 'required'
@@ -50,8 +66,8 @@ class MoviesController extends Controller
                 'languages.required' => 'Le languages est obligatoire',
                 'image.required' => 'L\'images est obligatoire',
 
-                'type.min' => 'Le type doit avoire au mois 10 caracteres',
-                'title.min' => 'Le titre doit avoire au mois 10 caracteres',
+                'type.min' => 'Le type doit avoire au mois 5 caracteres',
+                'title.min' => 'Le titre doit avoire au mois 5 caracteres',
                 'description.min' => 'La description doit avoire au mois 10 caracteres'
             ]);
 
@@ -79,7 +95,18 @@ class MoviesController extends Controller
     {
         $movies = Movies::findOrFail($id);
 
-        return view(" movies/edit ", compact('movies'));
+        $categories = Categories::all(['id','title']);
+
+        $cat = $categories->toArray();
+
+        $tabCat = [];
+
+        foreach ($cat as $value){
+            // combine tow tableaux dans un autre est former un seul tableaux "array( [id] => [title])"
+            $tabCat[$value['id']] = $value['title'];
+        }
+
+        return view(" movies/edit ", compact('movies','tabCat'));
     }
 
     /**
@@ -109,6 +136,74 @@ class MoviesController extends Controller
         Session::flash('delete', 'Movies successfully deleted!');
 
         return redirect(route(('movies_index')));
+    }
+
+    /**
+     * Update the visibility to movies
+     */
+    public function visible(Request $request, $id)
+    {
+        $movies = Movies::findOrFail($id);
+
+        $movies->visible = true;
+
+        $movies->save();
+
+        Session::flash('visible', 'visibility successfully updated!');
+
+        return redirect(route('movies_index'));
+
+    }
+
+    /**
+     * Update the visibility to movies
+     */
+    public function invisible(Request $request, $id)
+    {
+        $movies = Movies::findOrFail($id);
+
+        $movies->visible = false;
+
+        $movies->save();
+
+        Session::flash('visible', 'invisibility successfully updated!');
+
+        return redirect(route('movies_index'));
+
+    }
+
+    /**
+     * Update the visibility to movies
+     */
+    public function cover(Request $request, $id)
+    {
+        $movies = Movies::findOrFail($id);
+
+        $movies->cover = true;
+
+        $movies->save();
+
+        Session::flash('visible', 'cover successfully updated!');
+
+        return redirect(route('movies_index'));
+
+    }
+
+    /**
+     * Update the cover to movies
+     */
+    public function incover(Request $request, $id)
+    {
+        $movies = Movies::findOrFail($id);
+
+        $movies->cover = false;
+
+        $movies->save();
+
+        Session::flash('visible', 'incover successfully updated!');
+
+        return redirect(route('movies_index'));
+
     }
 
 

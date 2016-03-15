@@ -5,18 +5,41 @@ body{
 nav{
     z-index: 1000;
     position: fixed;
-    background-color: #212121 !important;
+    background-color: #1b39a8 !important;
+}
+
+.container{
+    width: 98% !important;
 }
 
 .general{
-    margin-top: 5rem;
-    min-height:100vh;
-
+    margin-top: 2.95rem;
+    min-height: 100vh;
 }
 
-
-footer{
-    border-top:1px solid #CCC ;
-    background-color: #333!important;
+.leftColumn{
+    min-height: 100vmax;
+    border-right: 1px solid #ccc;
 }
+
+.with-header{
+    border:none !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+}
+
+thead th{
+    border-radius: 0px !important;
+}
+
+.paddingForm{
+    padding: 15px;
+    background: #FFFFFF;
+}
+
+#card-alert i{
+    font-size: 20px;
+    position: relative;
+    top: 4px;
+}
+
 

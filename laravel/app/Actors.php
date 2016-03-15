@@ -15,4 +15,12 @@ class Actors extends Model
     protected $fillable = ['firstname', 'lastname', 'dob', 'city', 'image', 'nationality', 'biography', 'roles', 'slug', 'recompenses', 'created_at', '	updated_at'];
 
     protected $dates = ['dob'];
+
+    public function getMoyAgeActors()
+    {
+        $moyAge = DB::table('actors')
+            ->select('dob' ,DB::row(AVG(dob)));
+
+        return $moyAge;
+    }
 }

@@ -14,4 +14,10 @@ class Categories extends Model
     protected  $table = "categories";
 
     protected  $fillable = ['title', 'description', 'slug', 'image'];
+
+    public function movies()
+    {
+        // relation (1..+) un categories one to many movies//
+        return $this->hasMany('App\Movies');
+    }
 }

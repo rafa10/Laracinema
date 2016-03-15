@@ -18,53 +18,48 @@
 <!-- nav -->
 <nav>
     <div class="nav-wrapper">
-        <a href="{{url('')}}" class="brand-logo left">&nbsp;&nbsp;Laracinema</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <a href="{{url('')}}" class="brand-logo pink-text center">&nbsp;&nbsp;Laracinema</a>
+        {{--<ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{route('movies_index')}}">Movies</a></li>
             <li><a href="{{route('categories_index')}}">Catégorie</a></li>
             <li><a href="{{route('directors_index')}}">Directors</a></li>
             <li><a href="{{route('actors_index')}}">Actors</a></li>
-        </ul>
+        </ul>--}}
     </div>
 </nav>
 
 <br/>
-<!-- content -->
+<!--end header-->
 
+
+<!-- content -->
 <div class="container ">
-    <div class="row general">
-        <div class="col s12 ">
+
+    <div class="row general z-depth-1">
+        {{-- column left menu--}}
+        <div class="col s3 leftColumn white">
+            <ul class="collection with-header">
+                <li class="collection-header"><h4><i class="material-icons">dashboard</i>Dashboard</h4></li>
+                <li class="collection-item"><div class="pink-text">Movies<a href="{{route('movies_index')}}" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                <li class="collection-item"><div class="pink-text">Catégories<a href="{{route('categories_index')}}" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                <li class="collection-item"><div class="pink-text">Actors<a href="{{route('actors_index')}}" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                <li class="collection-item"><div class="pink-text">Directors<a href="{{route('directors_index')}}" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+            </ul>
+
+        </div>
+
+        {{--column right conten--}}
+        <div class="col s9"><br>
             @yield('table')
         </div>
-    </div>
-</div>
 
-<!-- footer -->
-<footer class="page-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="black-text">Laracinema</h5>
-                <p class="grey-text">Laracinema est une application web pour les film.</p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="black-text">Menus</h5>
-                <ul>
-                    <li><a class="grey-text" href="{{route('directors_index')}}">Directors</a></li>
-                    <li><a class="grey-text" href="{{route('categories_index')}}">Catégories</a></li>
-                    <li><a class="grey-text" href="{{route('movies_index')}}">Movies</a></li>
-                    <li><a class="grey-text" href="{{route('actors_index')}}">Actors</a></li>
-                </ul>
-            </div>
-        </div>
     </div>
-    <div class="footer-copyright ">
-        <div class="container grey-text">
-            © {{\Carbon\Carbon::now()->format('Y')}} Copyright
-            <a class="grey-text right" href="#!">More </a>
-        </div>
-    </div>
-</footer>
+
+</div>
+<!-- end content-->
+
+
+
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
