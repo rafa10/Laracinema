@@ -18,7 +18,7 @@
 <!-- nav -->
 <nav>
     <div class="nav-wrapper">
-        <a href="{{url('')}}" class="brand-logo pink-text center">&nbsp;&nbsp;Laracinema</a>
+        <a href="{{url('')}}" class="brand-logo pink-text left">&nbsp;Laracinema</a>
         {{--<ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{route('movies_index')}}">Movies</a></li>
             <li><a href="{{route('categories_index')}}">Catégorie</a></li>
@@ -35,21 +35,27 @@
 <!-- content -->
 <div class="container ">
 
-    <div class="row general z-depth-1">
+    <div class="row general">
         {{-- column left menu--}}
         <div class="col s3 leftColumn white">
             <ul class="collection with-header">
-                <li class="collection-header"><h4><i class="material-icons">dashboard</i>Dashboard</h4></li>
-                <li class="collection-item"><div class="pink-text">Movies<a href="{{route('movies_index')}}" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-                <li class="collection-item"><div class="pink-text">Catégories<a href="{{route('categories_index')}}" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-                <li class="collection-item"><div class="pink-text">Actors<a href="{{route('actors_index')}}" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-                <li class="collection-item"><div class="pink-text">Directors<a href="{{route('directors_index')}}" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                {{-- column left menu--}}
+                <li class="collection-item avatar">
+                    <img src="{{asset('img/man.png')}}" alt="" class="circle">
+                    <span class="title"><b>Rafa</b></span>
+                    <p>Adminstrator
+                    </p>
+                </li><hr>
+                <li class="collection-item"><div>Movies<a href="{{route('movies_index')}}" class="secondary-content"><i class="material-icons black-text">send</i></a></div></li>
+                <li class="collection-item"><div>Catégories<a href="{{route('categories_index')}}" class="secondary-content"><i class="material-icons black-text">send</i></a></div></li>
+                <li class="collection-item"><div>Actors<a href="{{route('actors_index')}}" class="secondary-content"><i class="material-icons black-text">send</i></a></div></li>
+                <li class="collection-item"><div>Directors<a href="{{route('directors_index')}}" class="secondary-content"><i class="material-icons black-text">send</i></a></div></li>
             </ul>
 
         </div>
 
         {{--column right conten--}}
-        <div class="col s9"><br>
+        <div class="col s9 rightColumn">
             @yield('table')
         </div>
 

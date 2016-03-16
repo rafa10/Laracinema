@@ -20,7 +20,8 @@
         </div>
     @endif
 
-    <div class="row paddingForm z-depth-1">
+    <div class="row paddingForm">
+    <div class="col s12 white z-depth-1">
 
         <div class="row">
             <div class="input-field col s12">
@@ -152,5 +153,6 @@
         </div>
         {{Form::token()}}
         {{Form::close()}}
+        </div>
     </div>
 @endsection

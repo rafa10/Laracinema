@@ -20,7 +20,8 @@
         </div>
     @endif
 
-    <div class="row paddingForm z-depth-1">
+    <div class="row paddingForm">
+        <div class="col s12 white z-depth-1">
 
         {{Form::open(array('method' => 'post', 'url' => route('actors_update', $actors)))}}
 
@@ -90,6 +91,7 @@
 
         {{ csrf_field() }}
         {{Form::close()}}
+      </div>
     </div>
 
 

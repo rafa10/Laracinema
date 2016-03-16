@@ -17,7 +17,8 @@
         </div>
     @endif
 
-    <div class="row paddingForm z-depth-1">
+    <div class="row paddingForm">
+        <div class="col s12 white z-depth-1">
 
         {{Form::open(array('method' => 'post', 'url' => route('movies_update', $movies)))}}
 
@@ -116,7 +117,7 @@
 
         {{Form::token()}}
         {{Form::close()}}
-
+       </div>
     </div>
 
 @endsection

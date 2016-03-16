@@ -25,9 +25,21 @@ class User extends Authenticatable
 
     public function getNbUserActif()
     {
-        $nbUser = DB::table('user')->where('enabled', 1)->count() ;
+        $nbUser = DB::table('user')
+                            ->where('enabled', 1)
+                            ->count() ;
 
         return $nbUser;
+    }
+
+    public function getUserActif()
+    {
+        $userActif = DB::table('user')
+                                ->orderby('lastActivity', 'desc')
+                                ->take(16)
+                                ->get();
+
+        return $userActif;
     }
 
 

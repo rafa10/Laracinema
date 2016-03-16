@@ -13,18 +13,33 @@ nav{
 }
 
 .general{
-    margin-top: 2.95rem;
+    display: flex;
+    margin-top: 2.90rem;
     min-height: 100vh;
+    justify-content: space-between;
 }
 
 .leftColumn{
+    z-index: 100;
+    position: fixed;
     min-height: 100vmax;
     border-right: 1px solid #ccc;
 }
 
+.rightColumn{
+
+}
+
+hr{
+    border: 1px solid #e0e0e0;
+}
+
 .with-header{
     border:none !important;
-    border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.leftColumn .collection-item{
+    border: none !important;
 }
 
 thead th{
@@ -33,7 +48,7 @@ thead th{
 
 .paddingForm{
     padding: 15px;
-    background: #FFFFFF;
+    /*background: #FFFFFF;*/
 }
 
 #card-alert i{

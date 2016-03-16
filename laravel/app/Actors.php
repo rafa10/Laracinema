@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Actors extends Model
 {
@@ -18,9 +19,8 @@ class Actors extends Model
 
     public function getMoyAgeActors()
     {
-        $moyAge = DB::table('actors')
-            ->select('dob' ,DB::row(AVG(dob)));
-
+        $moyAge = DB::table('actors')->AVG(DB::raw('YEAR(SUBDATE(NOW(),TO_DAYS(dob)))'));
+        $moyAge = round($moyAge);
         return $moyAge;
     }
 }
