@@ -29,6 +29,18 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => '/movies'], function(){
 
+        // route de panier
+        route::get('/{id}/cart',[
+            'as'   => 'cart',
+            'uses' => 'MoviesController@cart'
+        ]);
+
+        // session destroy
+        route::get('/{id}/destroyCart',[
+            'as'   => 'destroyCart',
+            'uses' => 'MoviesController@clearSession'
+        ]);
+
         Route::get('/index', [
             'as'   => 'movies_index',
             'uses' => 'MoviesController@index'

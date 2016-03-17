@@ -124,7 +124,7 @@
                     <ul class="collection z-depth-1">
                         <li class="collection-item avatar grey lighten-3">
                             <i class="material-icons circle red">supervisor_account</i><br>
-                            <span class="title">16 dernier utlisateurs</span>
+                            <span class="title upper">16 dernier utlisateurs</span>
                         </li>
                         @foreach($userActif as $item)
                         <li class="collection-item avatar">
@@ -142,7 +142,7 @@
                     <ul class="collection z-depth-1">
                         <li class="collection-item avatar grey lighten-3">
                             <i class="material-icons circle pink">movie</i><br>
-                            <span class="title">10 prochaines sessions</span>
+                            <span class="title upper">10 prochaines sessions</span>
                         </li>
                         @foreach($nextSessions as $item)
                         <li class="collection-item avatar">
@@ -154,17 +154,17 @@
                         @endforeach
                     </ul>
 
-                    <ul class="collection z-depth-1">{{-- stats movies--}}
+                    <ul class="collection z-depth-1">{{-- stats laracinema--}}
                         <li class="collection-item avatar grey lighten-3">
                             <i class="material-icons circle cyan">trending_down</i><br>
-                            <span class="title">Nombres</span>
+                            <span class="title upper">Nombres</span>
                         </li>
-                        <li class="collection-item"><div>Movies<a href="#!" class="secondary-content white-text red circle"><b>&nbsp;{{count($totalMovies)}}&nbsp;</b></a></div></li>
-                        <li class="collection-item"><div>Catégories<a href="#!" class="secondary-content white-text blue circle"><b>&nbsp;{{count($totalCategories)}}&nbsp;</b></a></div></li>
-                        <li class="collection-item"><div>Actors<a href="#!" class="secondary-content white-text green circle"><b>&nbsp;{{count($totalActors)}}&nbsp;</b></a></div></li>
-                        <li class="collection-item"><div>Directors<a href="#!" class="secondary-content white-text purple circle"><b>&nbsp;{{count($totalDirectors)}}&nbsp;</b></a></div></li>
-                        <li class="collection-item"><div>Sénces<a href="#!" class="secondary-content white-text orange circle"><b>&nbsp;{{count($totalSessions)}}&nbsp;</b></a></div></li>
-                        <li class="collection-item"><div>Média<a href="#!" class="secondary-content white-text cyan circle"><b>&nbsp;{{count($totalMedias)}}&nbsp;</b></a></div></li>
+                        <li class="collection-item"><div>Movies<a class="secondary-content white-text red circle"><b>&nbsp;{{count($totalMovies)}}&nbsp;</b></a></div></li>
+                        <li class="collection-item"><div>Catégories<a class="secondary-content white-text blue circle"><b>&nbsp;{{count($totalCategories)}}&nbsp;</b></a></div></li>
+                        <li class="collection-item"><div>Actors<a class="secondary-content white-text green circle"><b>&nbsp;{{count($totalActors)}}&nbsp;</b></a></div></li>
+                        <li class="collection-item"><div>Directors<a class="secondary-content white-text purple circle"><b>&nbsp;{{count($totalDirectors)}}&nbsp;</b></a></div></li>
+                        <li class="collection-item"><div>Sénces<a class="secondary-content white-text orange circle"><b>&nbsp;{{count($totalSessions)}}&nbsp;</b></a></div></li>
+                        <li class="collection-item"><div>Média<a class="secondary-content white-text cyan circle"><b>&nbsp;{{count($totalMedias)}}&nbsp;</b></a></div></li>
                     </ul>
                 </div>
 
@@ -172,7 +172,7 @@
                     <ul class="collection z-depth-1">{{-- stats movies--}}
                         <li class="collection-item avatar">
                             <i class="material-icons circle green">theaters</i><br>
-                            <span class="title"><b>{{ $randTrailer->title }}</b></span>
+                            <span class="title upper"><b>{{ $randTrailer->title }}</b></span>
                         </li>
                         <div class="video-container">
                             {!! $randTrailer->trailer !!}}}
@@ -180,6 +180,17 @@
                     </ul>
                 </div>
 
+                <div class="col s6">
+                    <ul class="collection z-depth-1">{{-- stats budget by distribiteur--}}
+                        <li class="collection-item avatar grey lighten-3">
+                            <i class="material-icons circle purple">trending_down</i><br>
+                            <span class="title upper"><b>Budget by Distributor</b></span>
+                        </li>
+                        @foreach($sumBudget as $item)
+                        <li class="collection-item"><div>{{$item->distributeur}}<a class="secondary-content purple-text  "><b>{{$item->totalBudget}} €</b></a></div></li>
+                        @endforeach
+                    </ul>
+                </div>
 
             </div>
 

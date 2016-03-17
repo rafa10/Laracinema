@@ -75,6 +75,14 @@ class Movies extends Model
         return $randTrailer;
      }
 
+    public function getBudgetByDistributor()
+    {
+        $sumBudget = DB::table('movies')
+                                ->select('distributeur', DB::raw( 'SUM(budget) as totalBudget'))
+                                ->groupby('distributeur')
+                                ->get();
 
+        return $sumBudget;
+    }
 
 }

@@ -19,14 +19,14 @@ nav{
     justify-content: space-between;
 }
 
-.leftColumn{
+#leftColumn{
     z-index: 100;
     position: fixed;
     min-height: 100vmax;
     border-right: 1px solid #ccc;
 }
 
-.rightColumn{
+#rightColumn{
 
 }
 
@@ -34,16 +34,43 @@ hr{
     border: 1px solid #e0e0e0;
 }
 
+.upper{
+    text-transform: uppercase;
+}
+
 .with-header{
     border:none !important;
 }
 
-.leftColumn .collection-item{
+#leftColumn .collection-item{
     border: none !important;
 }
 
+.bold i{
+    font-size: 20px;
+    position: relative;
+    top: 10px;
+    line-height: 0;
+    padding: 0 20px;
+}
+
+.bold a{
+    padding: 10px 0;
+    width: 100%;
+    color: #2e3436;
+}
+
+.bold a:hover{
+    background: #e0e0e0;
+}
+
+
 thead th{
     border-radius: 0px !important;
+}
+
+tbody{
+    font-size: 0.8rem;
 }
 
 .paddingForm{
@@ -57,4 +84,31 @@ thead th{
     top: 4px;
 }
 
+.notification-badge {
+    position: relative;
+    right: 5px;
+    top: -20px;
+    color: #ffffff;
+    background-color: #FF4081;
+    margin: 0 -.8em;
+    border-radius: 50%;
+    padding: 4px 5px;
+}
 
+small{
+    font-size: 0.8rem !important;
+}
+
+.dropdown-content{
+    top: 64px !important;
+    font-size: 0.8rem!important;
+    width: 20rem;
+}
+
+
+.dropdown-content li>span {
+    font-size: 16px !important;
+    color: #ff4081 !important;
+    line-height: 22px !important;
+    padding: 6.5px 16px ;
+}

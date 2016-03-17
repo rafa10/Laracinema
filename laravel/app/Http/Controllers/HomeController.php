@@ -70,8 +70,10 @@ class HomeController extends Controller
         // relation entre la table movies --> sessions
         $moviesSessions = Sessions::find(1)->movies;
         $cinema = Sessions::find(1)->cinema;
-
+        // selectionné un tralier d'un film aléatoire
         $randTrailer = $movies->getRandTrailer();
+        //clacluer sum budget
+        $sumBudget = $movies->getBudgetByDistributor();
 
         return view(" /welcome ", compact(
             'nbMovies',
@@ -92,7 +94,8 @@ class HomeController extends Controller
             'totalSessions',
             'totalDirectors',
             'totalMedias',
-            'randTrailer'
+            'randTrailer',
+            'sumBudget'
             ));
     }
 

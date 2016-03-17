@@ -35,10 +35,13 @@
             </div>
         </div>
     @endif
+    <h5 class="center">Movies list ({{count($movies)}})</h5>
 
-    <table class="bordered responsive-table white z-depth-1">
+    <table class="centered responsive-table white z-depth-1">
         <thead class="teal lighten-3">
         <tr>
+            <th data-field="Image">Id</th>
+            <th data-field="Image">&nbsp;</th>
             <th data-field="Image">Image</th>
             <th data-field="Type">Type</th>
             <th data-field="Title">Title</th>
@@ -54,7 +57,15 @@
         @foreach($movies as $item)
         <tbody>
         <tr>
-            <td><img src="{{$item->image}}" width=100" height="150"></td>
+            <td>{{$item->id}}&nbsp;</td>
+            <td>
+                @if(!array_key_exists($item->id, session('key', [])))
+                    <a href="{{route('cart', $item->id)}}"><i class="small mdi-action-favorite-outline cyan-text "></i></a>
+                @else
+                    <a href="{{route('destroyCart', $item->id)}}"><i class="small mdi-action-favorite cyan-text "></i></a>
+                @endif
+            </td>
+            <td><img src="{{$item->image}}" width=70" height="100"></td>
             <td>{{$item->type}}</td>
             <td>{{$item->title}}</td>
             <td>{{$item->categories->title}}</td>

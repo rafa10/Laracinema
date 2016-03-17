@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class MoviesController extends Controller
@@ -17,12 +18,14 @@ class MoviesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $movies = Movies::paginate(5);
 
 //      pour affichier les catigorires dans film
         $categories = Movies::find(3)->categories;
+
+        $request->session()->get('key');
 
         return view(" movies/index ", compact('movies'));
     }
@@ -204,6 +207,35 @@ class MoviesController extends Controller
 
         return redirect(route('movies_index'));
 
+    }
+
+    /**
+     * method panier
+     * @param $id
+     */
+    public function cart(Request $request ,$id)
+    {
+        $movies = Movies::findOrFail($id);
+
+        $sessionTabMovies = [];
+
+        $sessionTabMovies = $request->session()->get('key', []);
+
+        $sessionTabMovies[$id] = $movies->title;
+
+        $request->session()->put('key', $sessionTabMovies);
+
+        return Redirect::route('movies_index');
+    }
+
+
+    public function clearSession(Request $request, $id)
+    {
+        $id = $request->session()->get('key', $id);
+//      dd($id);
+        $request->session()->flush($id);
+
+        return Redirect::route('movies_index');
     }
 
 
