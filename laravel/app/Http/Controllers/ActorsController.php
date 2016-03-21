@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class ActorsController extends Controller
@@ -37,7 +38,32 @@ class ActorsController extends Controller
      */
     public function store(Request $request)
     {
-        $actors = Actors::create($request->all());
+        $image = Input::file('image');
+
+        if (Input::hasFile('image')){
+
+//          Récupere le non d'origine de fichier'
+            $fileName = $image->getClientOriginalName();
+
+//          récupere l'extension de l'image ex: (png|jpg|jpeg)
+            $extension = $image->getClientOriginalExtension();
+
+//          renameing image
+            $fileName = rand(11111,99999).'.'.$extension;
+
+//          Indique ou stocke le fichier
+            $destinationPath = public_path().'/uploads/actors';
+
+//          Déplacer le fichier
+            $image->move($destinationPath, $fileName);
+
+        }
+
+
+
+        $actors = Actors::create($request->only('firstname', 'lastname', 'dob', 'city', 'nationality', 'biography', 'roles', 'slug'));
+        $actors->image = asset('/uploads/actors/'.$fileName);
+        $actors->save();
 
         Session::flash('create', 'Actors successfully added!');
 

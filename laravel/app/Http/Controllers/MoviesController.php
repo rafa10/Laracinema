@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -20,7 +21,7 @@ class MoviesController extends Controller
      */
     public function index(Request $request)
     {
-        $movies = Movies::paginate(5);
+        $movies = Movies::all();//paginate(5);
 
 //      pour affichier les catigorires dans film
         $categories = Movies::find(3)->categories;
@@ -73,8 +74,32 @@ class MoviesController extends Controller
                 'title.min' => 'Le titre doit avoire au mois 5 caracteres',
                 'description.min' => 'La description doit avoire au mois 10 caracteres'
             ]);
+//      uploade image
+
+        $image = Input::file('image');
+
+        if(Input::hasFile('image')){
+
+//          Récupere le non d'origine de fichier
+            $fileName = $image->getClientOriginalName();
+
+//          récupere l'extension de l'image ex: (png|jpg|jpeg)
+            $extension = $image->getClientOriginalExtension();
+
+//          renameing image
+            $fileName = rand(11111,99999).'.'.$extension;
+
+//          Indique ou stocke le fichier
+            $destinationPath = public_path().'/uploads/movies';
+
+//          Déplacer le fichier
+            $image->move($destinationPath, $fileName);
+
+        }
 
         $movies = Movies::create($request->all());
+        $movies->image = asset('/uploads/movies/'.$fileName);
+        $movies->save();
 
         Session::flash('create', 'Movies successfully added!');
 
@@ -105,7 +130,7 @@ class MoviesController extends Controller
         $tabCat = [];
 
         foreach ($cat as $value){
-            // combine tow tableaux dans un autre est former un seul tableaux "array( [id] => [title])"
+            // combiner deux tableaux dans un autre est former un seul tableaux "array( [id] => [title])"
             $tabCat[$value['id']] = $value['title'];
         }
 
@@ -231,12 +256,27 @@ class MoviesController extends Controller
 
     public function clearSession(Request $request, $id)
     {
-        $id = $request->session()->get('key', $id);
-//      dd($id);
-        $request->session()->flush($id);
+        $idSearch = $request->session()->get('key', []);
+
+        unset($idSearch[$id]);
+        // aprés la suppersion de l'element dans la session il faut écraser l'ancien tableau
+        $request->session()->put('key', $idSearch);
+
 
         return Redirect::route('movies_index');
     }
+
+    public function clearAllSession(Request $request)
+    {
+
+        $request->session()->get('key', []);
+
+        $request->session()->flush();
+
+
+        return Redirect::route('movies_index');
+    }
+
 
 
 }

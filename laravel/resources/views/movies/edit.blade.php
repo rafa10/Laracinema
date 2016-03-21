@@ -18,13 +18,13 @@
     @endif
 
     <div class="row paddingForm">
-        <div class="col s12 white z-depth-1">
+        <div class="col s6 white z-depth-1">
 
         {{Form::open(array('method' => 'post', 'url' => route('movies_update', $movies)))}}
 
             <div class="row">
                 <div class="input-field col s12">
-                    <h4 class="black-text center">Update Movies</h4>
+                    <h5 class="black-text center upper">Update Movies</h5>
                 </div>
             </div>
 
@@ -36,11 +36,11 @@
             </div>
 
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{Form::label('type', 'Type')}}
                     {{Form::text('type', $movies->type, array('class' => 'validate'))}}
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{Form::label('title', 'Title')}}
                     {{Form::text('title', $movies->title, array('class' => 'validate'))}}
                 </div>
@@ -54,44 +54,44 @@
             </div>
 
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{Form::label('languages', 'Languages')}}
                     {{Form::text('languages', $movies->languages, array('class' => 'validate'))}}
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{Form::label('image', 'Image')}}
                     {{Form::text('image', $movies->image, array('class' => 'validate'))}}
                 </div>
             </div>
 
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{Form::label('trailer', 'Trailer')}}
                     {{Form::text('trailer', $movies->trailer, array('class' => 'validate'))}}
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{Form::label('distributeur', 'Distributeur')}}
                     {{Form::text('distributeur', $movies->distributeur, array('class' => 'validate'))}}
                 </div>
             </div>
 
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{Form::label('annee', 'Annee')}}
                     {{Form::text('annee', $movies->annee, array('class' => 'validate'))}}
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{Form::label('bo', 'Bo')}}
                     {{Form::select('bo', array('VO' =>'VO','VOST' => 'VOST', 'VOSTFR' => 'VOSTFR'), $movies->bo,  array('class' => 'validate'))}}
                 </div>
             </div>
 
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{Form::label('budget', 'Budget')}}
                     {{Form::text('budget', $movies->budget, array('class' => 'validate'))}}
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{Form::label('duree', 'Duree')}}
                     {{Form::text('duree', $movies->duree, array('class' => 'validate'))}}
                 </div>

@@ -20,13 +20,13 @@
     @endif
 
     <div class="row paddingForm">
-        <div class="col s12 white z-depth-1">
+        <div class="col s6 white z-depth-1">
 
         {{Form::open(array('method' => 'post', 'url' => route('categories_update', $categories)))}}
 
         <div class="row">
             <div class="input-field col s12">
-                <h4 class="black-text center">Update categories</h4>
+                <h5 class="black-text center upper">Update categories</h5>
             </div>
         </div>
 

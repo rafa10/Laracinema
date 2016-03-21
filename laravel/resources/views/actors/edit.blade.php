@@ -21,44 +21,44 @@
     @endif
 
     <div class="row paddingForm">
-        <div class="col s12 white z-depth-1">
+        <div class="col s6 white z-depth-1">
 
         {{Form::open(array('method' => 'post', 'url' => route('actors_update', $actors)))}}
 
         <div class="row">
             <div class="input-field col s12">
-                <h4 class="black-text center">Update actors</h4>
+                <h5 class="black-text center upper">Update actors</h5>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 {{Form::label('firstname', 'Firstname')}}
                 {{Form::text('firstname', $actors->firstname,array('class' => 'validate'))}}
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 {{Form::label('lastname', 'Lastname')}}
                 {{Form::text('lastname', $actors->lastname,array('class' => 'validate'))}}
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 {{Form::label('dob', 'Dob')}}
                 {{Form::date('dob', $actors->dob, array('class' => 'datepicker'))}}
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 {{Form::label('city', 'City')}}
                 {{Form::text('city', $actors->city, array('class' => 'validate'))}}
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 {{Form::label('image', 'Image')}}
                 {{Form::text('image', $actors->image, array('class' => 'validate'))}}
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 {{Form::label('nationality', 'Nationality')}}
                 {{Form::text('nationality', $actors->nationality, array('class' => 'validate'))}}
             </div>
@@ -72,11 +72,11 @@
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 {{Form::label('roles', 'Roles')}}
                 {{Form::text('roles', $actors->roles, array('class' => 'validate'))}}
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 {{Form::label('slug', 'Slug')}}
                 {{Form::text('slug', $actors->slug, array('class' => 'validate'))}}
             </div>

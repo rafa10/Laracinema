@@ -30,6 +30,14 @@ class Movies extends Model
         return $this->hasMany('App\Sessions');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comments');
+    }
+
 
     // SQL Query
     // SELECT COUNT(*) FROM MOVIES WHERE visible = 1

@@ -38,5 +38,42 @@ $(document).ready(function() {
         }
     );
 
+    //$('.btn-close a').click(function(e){
+    //    e.preventDefault();
+    //
+    //    var link = $(this);
+    //    $.ajax({
+    //        url: link.attr('href'),
+    //        type: "GET",
+    //        success : function(html){
+    //            alert('le film est bien supprimer')
+    //        },
+    //        error : function(resultat, statut, erreur){
+    //            alert(statut);
+    //        }
+    //    });
+    //});
+
+
+    function readImage(input){
+        if(input.files && input.files[0]){
+            var reader = new FileReader();
+
+            reader.onload = function(e){
+                $('#img').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('#imgInp').change(function(){
+        readImage(this);
+        $('div').removeClass('hide');
+
+    })
+
 });
+
+
+
 

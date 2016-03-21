@@ -28,8 +28,11 @@
         </div>
     @endif
 
-    <table class="bordered white z-depth-1">
-        <thead class="purple lighten-4">
+
+    <h5 class="center">List directors ({{count($directors)}})</h5>
+
+    <table class="centered bordered responsive-table white z-depth-1">
+        <thead class="grey lighten-3">
         <tr>
             <th data-field="price">Image</th>
             <th data-field="id">firstname</th>

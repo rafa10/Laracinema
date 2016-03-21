@@ -37,8 +37,8 @@
     @endif
     <h5 class="center">Movies list ({{count($movies)}})</h5>
 
-    <table class="centered responsive-table white z-depth-1">
-        <thead class="teal lighten-3">
+    <table class="centered bordered responsive-table white z-depth-1">
+        <thead class="grey lighten-3">
         <tr>
             <th data-field="Image">Id</th>
             <th data-field="Image">&nbsp;</th>
@@ -62,7 +62,7 @@
                 @if(!array_key_exists($item->id, session('key', [])))
                     <a href="{{route('cart', $item->id)}}"><i class="small mdi-action-favorite-outline cyan-text "></i></a>
                 @else
-                    <a href="{{route('destroyCart', $item->id)}}"><i class="small mdi-action-favorite cyan-text "></i></a>
+                    <a><i class="small mdi-action-favorite cyan-text "></i></a>
                 @endif
             </td>
             <td><img src="{{$item->image}}" width=70" height="100"></td>
@@ -98,10 +98,10 @@
         @endforeach
     </table>
 
-    <div class="row">
-        <div class="col s12 center">
-                {!! $movies->render() !!}
-        </div>
-    </div>
+    {{--<div class="row">--}}
+        {{--<div class="col s12 center">--}}
+                {{--{!! $movies->render() !!}--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
 @endsection

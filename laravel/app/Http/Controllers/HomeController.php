@@ -75,6 +75,11 @@ class HomeController extends Controller
         //clacluer sum budget
         $sumBudget = $movies->getBudgetByDistributor();
 
+        // 5 last comments
+        $user = Comments::find(3)->user;
+        $movies = Comments::find(3)->movies;
+        $lastFiveComments = $comments->getLastFiveComments();
+
         return view(" /welcome ", compact(
             'nbMovies',
             'totalMovies',
@@ -95,7 +100,8 @@ class HomeController extends Controller
             'totalDirectors',
             'totalMedias',
             'randTrailer',
-            'sumBudget'
+            'sumBudget',
+            'lastFiveComments'
             ));
     }
 

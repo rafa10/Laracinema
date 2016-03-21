@@ -24,20 +24,39 @@
 
             <li>
                 <a href="#" class="waves-effect waves-block waves-light notification-button" data-activates='dropdown'>
-                    <i class="small mdi-action-favorite"><small class="notification-badge">{{count(session('key', []))}}</small>
-                    </i></a>
-
-                <ul id="dropdown" class="dropdown-content" >
-                    <li>
-                        <span class="center"> MOVIES CART </span>
-                    </li>
-                    @foreach(session('key', []) as $value)
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#!"><i class="mdi-action-add-shopping-cart pink-text"></i><span class="black-text">{{$value}}</span></a>
-                    </li>
-                    @endforeach
-                </ul>
+                    <i class="small mdi-action-favorite"><small class="notification-badge">{{count(session('key', []))}}</small></i></a>
+                @if (!empty(session('key', [])) )
+                    <ul id="dropdown" class="dropdown-content" >
+                        <li>
+                            <span class="center"> MOVIES CART
+                            <a href="{{route('destroyAllCart')}}" id="btn-close"><i class="small mdi-action-delete black-text "></i></a>
+                            </span>
+                        </li>
+                        @foreach(session('key', []) as $key => $value)
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!">
+                                <i class="mdi-action-add-shopping-cart pink-text"></i>
+                                <span class="black-text">{{$value}}</span>
+                            </a>
+                            <span class="btn-close"><a href="{{route('destroyCart', $key)}}" ><i class="small mdi-navigation-close black-text "></i></a></span>
+                        </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <ul id="dropdown" class="dropdown-content" >
+                        <li>
+                            <span class="center"> MOVIES CART</span>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!" class="red">
+                                <i class="mdi-action-add-shopping-cart red-text"></i>
+                                <span class="black-text">Le panier est vide</span>
+                            </a>
+                        </li>
+                    </ul>
+                @endif
             </li>
             <li><a href="#" class="upper">Sign in</a></li>
             <li><a href="#" class="upper">Sign up</a></li>

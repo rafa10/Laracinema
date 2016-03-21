@@ -7,13 +7,13 @@
 
 
     <div class="row paddingForm">
-        <div class="col s12 white z-depth-1">
+        <div class="col s6 white z-depth-1">
 
-        {{Form::open(array('method' => 'post', 'url' => route('categories_store')))}}
+        {{Form::open(array('method' => 'post', 'url' => route('categories_store'), 'files'=>true))}}
 
             <div class="row">
                 <div class="input-field col s12">
-                    <h4 class="black-text center">Create categories</h4>
+                    <h5 class="black-text center upper">Create categories</h5>
                 </div>
             </div>
 
@@ -39,16 +39,24 @@
             </div>
 
             <div class="row">
-                <div class="input-field col s12">
-                    {{Form::label('image', 'Image')}}
-                    {{Form::text('image', null, array('class' => 'validate'))}}
+                <div class="file-field input-field col s12">
+                    <div class="hide center">
+                        <img id="img" src="#" width="90" height="120" alt="uplode image">
+                    </div>
+                    <div class="btn">
+                        <span>Image</span>
+                        {{Form::file('image', array('id'=>'imgInp'))}}
+                    </div>
+                    <div class="file-path-wrapper">
+                        {{Form::text('image', null, array('class' => 'file-path validate'))}}
+                    </div>
                 </div>
             </div>
 
             <br>
             <div class="row ">
-                <div class="center">
-                    {{Form::submit('Envoyer', array('class' => 'btn waves-effect waves-light'))}}
+                <div class=" col s12 center">
+                    {{Form::submit('Envoyer', array('class' => 'btn waves-effect waves-light right pink '))}}
                 </div>
             </div>
 

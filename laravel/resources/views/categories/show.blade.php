@@ -9,14 +9,14 @@
             <div class="card red lighten-4 ">
                 <div class="card-content black-text center">
                     <i class="material-icons">error_outline</i><br>
-                    <span>Etez vous sur de supprimer ce directors N°: {{$directors->id}}</span>
+                    <span>Etez vous sur de supprimer ce directors N°: {{$categories->title}}</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <table>
-        <thead>
+    <table class="centered responsive-table white z-depth-1">
+        <thead class="teal lighten-3">
         <tr>
             <th data-field="id">Titre</th>
             <th data-field="price">Description</th>
@@ -31,7 +31,7 @@
                 <td>{!! $categories->description !!}</td>
                 <td>{{$categories->created_at}}</td>
                 <td><img src="{{$categories->image}}" width=220" height="300"></td>
-                <td><a href="{{route('categories_destroy', $categories->id)}}"><i class="small material-icons">delete</i></a></td>
+                <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{route('categories_destroy', $categories->id)}}"><i class="small material-icons">delete</i></a></td>
             </tr>
             </tbody>
     </table>

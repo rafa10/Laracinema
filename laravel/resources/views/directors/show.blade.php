@@ -15,8 +15,8 @@
         </div>
     </div>
 
-    <table>
-        <thead>
+    <table class="centered responsive-table white z-depth-1">
+        <thead class="teal lighten-3">
         <tr>
             <th data-field="id">firstname</th>
             <th data-field="id">Lastname</th>
@@ -33,7 +33,7 @@
             <td>{{$directors->dob}}</td>
             <td>{{$directors->note}}</td>
             <td><img src="{{$directors->image}}" width="100" height="120"></td>
-            <td><a href="{{route('directors_destroy', $directors->id)}}"><i class="small material-icons">delete</i></a></td>
+            <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{route('directors_destroy', $directors->id)}}"><i class="small material-icons">delete</i></a></td>
         </tr>
         </tbody>
     </table>

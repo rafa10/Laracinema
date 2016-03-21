@@ -2,10 +2,11 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
 
-class User extends Authenticatable
+class User extends Model
 {
     protected $table = 'user';
 
@@ -16,12 +17,16 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+
     /**
-     * The attributes excluded from the model's JSON form.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function comments()
+    {
+        return $this->hasMany('App\Comments');
+    }
+
+
 
     public function getNbUserActif()
     {

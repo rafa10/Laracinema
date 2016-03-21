@@ -35,10 +35,16 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'MoviesController@cart'
         ]);
 
-        // session destroy
+        // session destroy element
         route::get('/{id}/destroyCart',[
             'as'   => 'destroyCart',
             'uses' => 'MoviesController@clearSession'
+        ]);
+
+        // session destroy all element
+        route::get('/destroyAllCart',[
+            'as'   => 'destroyAllCart',
+            'uses' => 'MoviesController@clearAllSession'
         ]);
 
         Route::get('/index', [

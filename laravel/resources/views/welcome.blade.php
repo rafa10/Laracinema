@@ -192,6 +192,29 @@
                     </ul>
                 </div>
 
+                <div class="col s12">
+                    <ul class="collection z-depth-1">
+                        <li class="collection-item avatar grey lighten-3">
+                            <i class="material-icons circle grey">comment</i><br>
+                            <span class="title upper"><b>5 last comments</b></span>
+                        </li>
+                        @foreach($lastFiveComments as $item)
+                            <li class="collection-item avatar">
+                                @if($item->state == 2)
+                                    <i class="material-icons circle green">done</i>
+                                @elseif($item->state == 1)
+                                    <i class="material-icons circle amber">replay</i>
+                                @else
+                                    <i class="material-icons circle red">clear</i>
+                                @endif
+                                <span class="title"><b>{{$item->user->username}}</b></span><span class="grey-text"> à commenter</span>
+                                <p><span class="blue-text">{{$item->movies->title}}</span></p>
+                                <a href="#!" class="secondary-content"><span class="grey-text">{{$item->created_at->format('d/m/Y')}} à {{$item->created_at->format('H:m')}}</span></a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
             </div>
 
 

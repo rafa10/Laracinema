@@ -6,6 +6,7 @@ use App\Categories;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class CategoriesController extends Controller
@@ -33,7 +34,27 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+
+        $image = Input::file('image');
+
+        if(Input::hasFile('image')){
+
+            $fileName = $image->getClientOriginalName();
+
+            $extension = $image->getClientOriginalExtension();
+
+            $fileName = rand(11111,99999).'.'.$extension;
+
+            $destinationPath = public_path().'/uploads/categories';
+
+            $image->move($destinationPath, $fileName);
+
+        }
+
+
         $categories = Categories::create($request->all());
+        $categories->image = asset('uploads/categories/'.$fileName);
+        $categories->save();
 
         Session::flash('create', 'Catégorie successfully added!');
 

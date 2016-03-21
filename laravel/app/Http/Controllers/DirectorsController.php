@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class DirectorsController extends Controller
@@ -37,7 +38,26 @@ class DirectorsController extends Controller
      */
     public function store(Request $request)
     {
+        $image = Input::file('image');
+
+        if(Input::hasFile('image')){
+
+            $fileName = $image->getClientOriginalName();
+
+            $extension = $image->getClientOriginalExtension();
+
+            $fileName = rand(11111,99999).'.'.$extension;
+
+            $destinationPath = public_path().'/uploads/directors';
+
+            $image->move($destinationPath, $fileName);
+
+        }
+
         $directors = Directors::create($request->all());
+
+        $directors->image = asset('/uploads/directors/'.$fileName);
+        $directors->save();
 
         Session::flash('create', 'Actors successfully added!');
 
