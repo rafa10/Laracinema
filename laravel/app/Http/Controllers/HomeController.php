@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Actors;
 use App\Categories;
 use App\Comments;
@@ -15,12 +14,32 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+
 
 class HomeController extends Controller
 {
-
-    public function index()
+//    /**
+//     * Create a new controller instance.
+//     *
+//     * @return void
+//     */
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
+//
+//    /**
+//     * Show the application dashboard.
+//     *
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function index()
+//    {
+//        return view('home');
+//    }
+    public function dashboard()
     {
         $totalMovies    = Movies::all();
         $totalCategories = Categories::all();
@@ -102,10 +121,13 @@ class HomeController extends Controller
             'randTrailer',
             'sumBudget',
             'lastFiveComments'
-            ));
+        ));
     }
 
+    public function authenticate(){
 
+        return view("/login");
 
+    }
 
 }

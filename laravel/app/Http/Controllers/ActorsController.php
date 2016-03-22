@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
@@ -97,7 +98,40 @@ class ActorsController extends Controller
     {
         $actors = Actors::findOrFail($id);
 
-        $actors->update($request->all());
+        $actors->update($request->only('firstname', 'lastname', 'dob', 'city', 'nationality', 'biography', 'roles', 'slug'));
+
+        //  upload image
+        if(!empty(Input::file('image'))){
+
+            $filename = basename($actors->image);
+            $filename = public_path().'/uploads/actors/'.$filename;
+
+            File::delete($filename);
+
+            $image = Input::file('image');
+
+            if(Input::hasFile('image')){
+
+                //          Récupere le non d'origine de fichier
+                $fileName = $image->getClientOriginalName();
+
+                //          récupere l'extension de l'image ex: (png|jpg|jpeg)
+                $extension = $image->getClientOriginalExtension();
+
+                //          renameing image
+                $fileName = rand(11111,99999).'.'.$extension;
+
+                //          Indique ou stocke le fichier
+                $destinationPath = public_path().'/uploads/actors';
+
+                //          Déplacer le fichier
+                $image->move($destinationPath, $fileName);
+
+            }
+
+            $actors->image = asset('/uploads/actors/'.$fileName);
+            $actors->save();
+        }
 
         Session::flash('update', 'Actors successfully updated!');
 

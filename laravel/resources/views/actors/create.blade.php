@@ -78,8 +78,8 @@
 
         <br>
         <div class="row ">
-            <div class="center">
-                {{Form::submit('Envoyer', array('class' => 'btn waves-effect waves-light'))}}
+            <div class="col s12 center">
+                {{Form::submit('Envoyer', array('class' => 'btn waves-effect waves-light pink right'))}}
             </div>
         </div>
         {{Form::token()}}

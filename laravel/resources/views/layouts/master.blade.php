@@ -8,6 +8,8 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Importmain.css-->
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    {{--import css animate--}}
+    <link href="{{asset('css/animate.css')}}" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <!--Let browser know website is optimized for mobile-->
@@ -35,7 +37,7 @@
                         @foreach(session('key', []) as $key => $value)
                         <li class="divider"></li>
                         <li>
-                            <a href="#!">
+                            <a>
                                 <i class="mdi-action-add-shopping-cart pink-text"></i>
                                 <span class="black-text">{{$value}}</span>
                             </a>
@@ -58,8 +60,8 @@
                     </ul>
                 @endif
             </li>
-            <li><a href="#" class="upper">Sign in</a></li>
-            <li><a href="#" class="upper">Sign up</a></li>
+            <li><a href="#" class="upper"><i class="material-icons">movie</i></a></li>
+            <li><a href="#" class="upper"><i class="material-icons">language</i></a></li>
         </ul>
     </div>
 </nav>

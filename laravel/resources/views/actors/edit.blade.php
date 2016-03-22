@@ -7,29 +7,30 @@
 
 
 
-    @if(Session::has('update'))
-        <div class="row">
-            <div class="col s12">
-                <div class="card green lighten-4 ">
-                    <div class="card-content black-text center">
-                        <i class="material-icons">info_outline</i><br>
-                        <span>{{ Session::get('update') }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
+
 
     <div class="row paddingForm">
         <div class="col s6 white z-depth-1">
 
-        {{Form::open(array('method' => 'post', 'url' => route('actors_update', $actors)))}}
+        {{Form::open(array('method' => 'post', 'url' => route('actors_update', $actors), 'files'=>true))}}
 
         <div class="row">
             <div class="input-field col s12">
-                <h5 class="black-text center upper">Update actors</h5>
+                <h5 class="black-text upper">Update actors</h5>
             </div>
         </div>
+
+        @if(Session::has('update'))
+            <div class="row">
+                <div class="col s12">
+                    <div id="card-alert" class="card green lighten-5">
+                        <div class="card-content green-text center">
+                            <p><i class="material-icons">error_outline</i> {{Session::get('update')}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
         <div class="row">
             <div class="input-field col s12">
@@ -54,9 +55,17 @@
         </div>
 
         <div class="row">
-            <div class="input-field col s12">
-                {{Form::label('image', 'Image')}}
-                {{Form::text('image', $actors->image, array('class' => 'validate'))}}
+            <div class="file-field input-field col s12">
+                <div class="center">
+                    <img class="circle" id="img" src="{{$actors->image}}" width="100" height="100" alt="uplode image">
+                </div>
+                <div class="btn">
+                    <span>Image</span>
+                    {{Form::file('image', array('id'=>'imgInp'))}}
+                </div>
+                <div class="file-path-wrapper">
+                    {{Form::text('image', null, array('class' => 'file-path validate'))}}
+                </div>
             </div>
             <div class="input-field col s12">
                 {{Form::label('nationality', 'Nationality')}}
@@ -84,8 +93,8 @@
 
         <br>
         <div class="row ">
-            <div class="center">
-                {{Form::submit('Modifier', array('class' => 'btn waves-effect waves-light'))}}
+            <div class="col s12 center">
+                {{Form::submit('Modifier', array('class' => 'btn waves-effect waves-light pink right'))}}
             </div>
         </div>
 

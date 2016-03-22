@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
@@ -91,7 +92,40 @@ class DirectorsController extends Controller
     {
         $directors = Directors::findOrFail($id);
 
-        $directors->update($request->all());
+        $directors->update($request->only('firstname', 'lastname', 'dob', 'biography', 'note'));
+
+        //  upload image
+        if(!empty(Input::file('image'))){
+
+            $filename = basename($directors->image);
+            $filename = public_path().'/uploads/directors/'.$filename;
+            // supprimer l'ancien fichier image
+            File::delete($filename);
+
+            $image = Input::file('image');
+
+            if(Input::hasFile('image')){
+
+                // Récupere le non d'origine de fichier
+                $fileName = $image->getClientOriginalName();
+
+                // récupere l'extension de l'image ex: (png|jpg|jpeg)
+                $extension = $image->getClientOriginalExtension();
+
+                // renameing image
+                $fileName = rand(11111,99999).'.'.$extension;
+
+                // Indique ou stocke le fichier
+                $destinationPath = public_path().'/uploads/directors';
+
+                // Déplacer le fichier
+                $image->move($destinationPath, $fileName);
+
+            }
+
+            $directors->image = asset('/uploads/directors/'.$fileName);
+            $directors->save();
+        }
 
         Session::flash('update', 'Directors successfully updated!');
 

@@ -8,7 +8,7 @@
 
     @if($errors->any())
         <div class="row">
-            <div class="col s12">
+            <div class="col s6">
                 <div id="card-alert" class="card red lighten-5 ">
                     @foreach($errors->all() as $error)
                         <div class="card-content red-text ">
@@ -25,27 +25,28 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <h5 class="black-text center upper">Create Movies</h5>
+                <h5 class="black-text  upper">Create Movies</h5>
             </div>
         </div>
 
         {{Form::open(array('method' => 'post', 'url' => route('movies_store'), 'files'=> true))}}
 
+
         <div class="row">
-
-            <div class="row">
-                <div class="input-field col s12">
-                    {{Form::select('categories_id', $tabCat)}}
-                    {{Form::label('categories_id', 'Categories')}}
-                </div>
+            <div class="input-field col s12">
+                {{Form::select('categories_id', $tabCat)}}
+                {{Form::label('categories_id', 'Categories')}}
             </div>
+        </div>
 
+
+        <div class="row">
             <div class="input-field col s12">
                 {{Form::label('type', 'Type')}}
                 {{Form::text('type', null, array('class' => 'validate'))}}
             </div>
             @if($errors->has('type'))
-            <div class="col s6">
+            <div class="col s12">
                 <div id="cord-alert" class="card red lighten-4 ">
                     <div class="card-content red-text ">
                         <p><i class="material-icons">error_outline</i>{{ $errors->first('type') }}</p>
@@ -155,8 +156,8 @@
 
         <br>
         <div class="row ">
-            <div class="center">
-                {{Form::submit('Envoyer', array('class' => 'btn waves-effect waves-light'))}}
+            <div class="col s12 center">
+                {{Form::submit('Envoyer', array('class' => 'btn waves-effect waves-light pink right'))}}
             </div>
         </div>
 

@@ -10,9 +10,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class MoviesController extends Controller
 {
@@ -144,7 +146,42 @@ class MoviesController extends Controller
     {
         $movies = Movies::findOrFail($id);
 
-        $movies->update($request->all());
+        $movies->update($request->only('type', 'title', 'description', 'languages', 'trailer', 'categories_id','distributeur', 'bo', 'annee', 'budget', 'duree', 'date_release', 'note_presse', 'visible', 'cover', 'shop', 'slug', 'views'));
+
+
+
+    //  upload image
+        if(!empty(Input::file('image'))){
+
+            $filename = basename($movies->image);
+            $filename = public_path().'/uploads/movies/'.$filename;
+
+            File::delete($filename);
+
+            $image = Input::file('image');
+
+            if(Input::hasFile('image')){
+
+    //          Récupere le non d'origine de fichier
+                $fileName = $image->getClientOriginalName();
+
+    //          récupere l'extension de l'image ex: (png|jpg|jpeg)
+                $extension = $image->getClientOriginalExtension();
+
+    //          renameing image
+                $fileName = rand(11111,99999).'.'.$extension;
+
+    //          Indique ou stocke le fichier
+                $destinationPath = public_path().'/uploads/movies';
+
+    //          Déplacer le fichier
+                $image->move($destinationPath, $fileName);
+
+            }
+
+            $movies->image = asset('/uploads/movies/'.$fileName);
+            $movies->update();
+        }
 
         Session::flash('update', 'Movies successfully updated!');
 

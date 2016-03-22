@@ -46,7 +46,7 @@
         @foreach($directors as $item)
         <tbody>
         <tr>
-            <td><img src="{{$item->image}}" width="100" height="120"></td>
+            <td><img class="circle" src="{{$item->image}}" width="100" height="100"></td>
             <td>{{$item->firstname}}</td>
             <td>{{$item->lastname}}</td>
             <td>{{ $item->dob->diffInYears(\Carbon\Carbon::now()) }}</td>

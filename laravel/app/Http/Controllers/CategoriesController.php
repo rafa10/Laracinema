@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use League\Flysystem\File;
 
 class CategoriesController extends Controller
 {
@@ -88,7 +90,42 @@ class CategoriesController extends Controller
     {
         $categories = Categories::findOrFail($id);
 
-        $categories->update($request->all());
+        $categories->update($request->only('title', 'description', 'slug'));
+
+
+        //  upload image
+        if(!empty(Input::file('image'))){
+
+            $filename = basename($categories->image);
+            $filename = public_path().'/uploads/categories/'.$filename;
+
+            \Illuminate\Support\Facades\File::delete($filename);
+
+            $image = Input::file('image');
+
+            if(Input::hasFile('image')){
+
+                //          Récupere le non d'origine de fichier
+                $fileName = $image->getClientOriginalName();
+
+                //          récupere l'extension de l'image ex: (png|jpg|jpeg)
+                $extension = $image->getClientOriginalExtension();
+
+                //          renameing image
+                $fileName = rand(11111,99999).'.'.$extension;
+
+                //          Indique ou stocke le fichier
+                $destinationPath = public_path().'/uploads/categories';
+
+                //          Déplacer le fichier
+                $image->move($destinationPath, $fileName);
+
+            }
+
+            $categories->image = asset('/uploads/categories/'.$fileName);
+            $categories->save();
+        }
+
 
         Session::flash('update', 'Categorie successfully updated!');
 

@@ -14,13 +14,19 @@
 //
 Route::group(['middleware' => ['web']], function () {
 
+
 /*===============================================*/
 /*=========== routing de page home ============*/
 /*===============================================*/
 
     Route::get('/', [
-        'as'   => 'home',
-        'uses' => 'HomeController@index'
+        'as'   => 'dashboard',
+        'uses' => 'HomeController@dashboard'
+    ]);
+
+    Route::get('/login', [
+        'as'  => 'login',
+        'uses'=> 'HomeController@authenticate'
     ]);
 
 /*===============================================*/
@@ -237,3 +243,9 @@ Route::group(['middleware' => ['web']], function () {
 
 
 });
+
+//Route::group(['middleware' => 'web'], function () {
+//    Route::auth();
+//
+//    Route::get('/home', 'HomeController@index');
+//});
