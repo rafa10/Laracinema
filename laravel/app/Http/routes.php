@@ -15,6 +15,7 @@
 Route::group(['middleware' => ['web']], function () {
 
 
+
 /*===============================================*/
 /*=========== routing de page home ============*/
 /*===============================================*/
@@ -24,10 +25,24 @@ Route::group(['middleware' => ['web']], function () {
         'uses' => 'HomeController@dashboard'
     ]);
 
-    Route::get('/login', [
-        'as'  => 'login',
-        'uses'=> 'HomeController@authenticate'
-    ]);
+
+/*===============================================*/
+/*=========== routing de page account ===========*/
+/*===============================================*/
+
+    Route::group(['prefix' => '/account'], function(){
+
+        route::get('/profile',[
+            'as'   => 'account.profile',
+            'uses' => 'HomeController@profile'
+        ]);
+
+
+        route::get('/setting',[
+            'as'   => 'account.settings',
+            'uses' => 'HomeController@settings'
+        ]);
+    });
 
 /*===============================================*/
 /*=========== routing de page movies ============*/
@@ -244,8 +259,8 @@ Route::group(['middleware' => ['web']], function () {
 
 });
 
-//Route::group(['middleware' => 'web'], function () {
-//    Route::auth();
-//
-//    Route::get('/home', 'HomeController@index');
-//});
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+});

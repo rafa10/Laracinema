@@ -18,6 +18,7 @@
 </head>
 <body>
 <!-- nav -->
+
 <nav>
     <div class="nav-wrapper">
         <a href="{{url('')}}" class="brand-logo pink-text left"><i class="large material-icons">&nbsp;menu</i></a>
@@ -62,6 +63,15 @@
             </li>
             <li><a href="#" class="upper"><i class="material-icons">movie</i></a></li>
             <li><a href="#" class="upper"><i class="material-icons">language</i></a></li>
+            <li><a class='dropdown-button upper' href='#' data-activates='dropdown1'>&nbsp;&nbsp;&nbsp;Account&nbsp;&nbsp;&nbsp;</a>
+                <!-- Dropdown Structure -->
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li><a class="center" href="{{route('account.profile')}}"><i class="mdi-action-face-unlock"></i>Profile</a></li>
+                    <li><a class="center" href="{{route('account.settings')}}"><i class="mdi-action-settings"></i>Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a class="center" href="{{url('/logout')}}"><i class="mdi-hardware-keyboard-tab"></i>Logout</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>
@@ -79,11 +89,11 @@
             <ul class="collection with-header">
                 {{-- column left menu--}}
                 <li class="collection-item avatar">
-                    <img src="{{asset('img/man.png')}}" alt="" class="circle">
-                    <span class="title"><b>Rafa</b></span>
-                    <p>Adminstrator
-                    </p>
+                    <img src="{{Auth::user()->photo}}" alt="" class="circle">
+                    <span class="title"><b>{{Auth::user()->lastname}}&nbsp;{{Auth::user()->firstname}}</b></span>
+                    <p>Administrator</p>
                 </li>
+                <li class="divider"></li>
                 <li class="bold"><a href="{{route('movies_index')}}" class="waves-effect waves-cyan"><i class="small material-icons ">movie</i>Movies</a></li>
                 <li class="bold"><a href="{{route('categories_index')}}" class="waves-effect waves-cyan"><i class="small material-icons ">view_module</i>Catégories</a></li>
                 <li class="bold"><a href="{{route('actors_index')}}" class="waves-effect waves-cyan"><i class="small material-icons ">supervisor_account</i>Actors</a></li>
@@ -107,9 +117,8 @@
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
+<!--link file js personnel -->
 <script src="{{asset('js/main.js')}}"></script>
-
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 

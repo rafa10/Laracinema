@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Administrators;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -50,9 +52,20 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'lastname' => 'required|max:255',
+            'firstname' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:administrators',// test if the administrator is unique
             'password' => 'required|confirmed|min:6',
+        ],[
+            'lastname.required' => 'votre nom est requis',
+            'lastname.max' => 'votre prennom est trop long',
+            'firstname.required' => 'votre prénom est requis',
+            'firstname.max' => 'votre prénom est trop long',
+            'email.required' => 'votre email est requis',
+            'email.unique' => 'votre email est déja existe',
+            'password.required' => 'votre mdp est requis',
+            'password.min' => 'Votre mdp est trop court',
+            'password.confirmed' => 'votre mdp doit etre identique',
         ]);
     }
 
@@ -64,12 +77,37 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $photo = Input::file('photo');
+
+        if(Input::hasFile('photo')){
+
+//          Récupere le non d'origine de fichier
+            $fileName = $photo->getClientOriginalName();
+
+//          récupere l'extension de l'image ex: (png|jpg|jpeg)
+            $extension = $photo->getClientOriginalExtension();
+
+//          renameing image
+            $fileName = rand(11111,99999).'.'.$extension;
+
+//          Indique ou stocke le fichier
+            $destinationPath = public_path().'/uploads/administrators';
+
+//          Déplacer le fichier
+            $photo->move($destinationPath, $fileName);
+
+        }
+
+
+        return Administrators::create([
+            'lastname' => $data['lastname'],
+            'firstname' => $data['firstname'],
+            'photo'=> asset('/uploads/administrators/'.$fileName),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
+
 
 
 

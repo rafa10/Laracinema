@@ -26,6 +26,7 @@ $(document).ready(function() {
     // Hide sideNav
     $('.button-collapse').sideNav('hide');
 
+    //$(".dropdown-button").dropdown();
 
     $('.notification-button').dropdown({
             inDuration: 300,
