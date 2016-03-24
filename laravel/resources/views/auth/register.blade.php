@@ -17,7 +17,7 @@
                                 <img class="circle" id="img" src="#" width="70" height="70" alt="uplode image">
                             </div>
                             <div class="btn black">
-                                <span><i class="medium mdi-image-photo"></i></span>
+                                <span>Photo</span>
                                 {{Form::file('photo', array('id'=>'imgInp'))}}
                             </div>
                             <div class="file-path-wrapper">
@@ -45,6 +45,18 @@
                             @if ($errors->has('firstname'))
                                 <span class="help-block red-text">
                                     <strong>{{ $errors->first('firstname') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row {{ $errors->has('description') ? ' has-error' : '' }}">
+                        <div class="input-field col s12">
+                            <i class="mdi-action-question-answer prefix"></i>
+                            {{Form::textarea('description', null, array('class'=>'materialize-textarea'))}}
+                            {{Form::label('description','Description')}}
+                            @if ($errors->has('description'))
+                                <span class="help-block red-text">
+                                    <strong>{{ $errors->first('description') }}</strong>
                                 </span>
                             @endif
                         </div>

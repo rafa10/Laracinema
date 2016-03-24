@@ -34,14 +34,31 @@ Route::group(['middleware' => ['web']], function () {
 
         route::get('/profile',[
             'as'   => 'account.profile',
-            'uses' => 'HomeController@profile'
+            'uses' => 'AdminController@profile'
         ]);
 
 
         route::get('/setting',[
             'as'   => 'account.settings',
-            'uses' => 'HomeController@settings'
+            'uses' => 'AdminController@settings'
         ]);
+
+        route::post('/update',[
+            'as'   => 'account.update',
+            'uses' => 'AdminController@update'
+        ]);
+
+
+        route::get('/change_password',[
+            'as'   => 'account.change_password',
+            'uses' => 'AdminController@changePassword'
+        ]);
+
+        route::post('/update_password',[
+            'as'   => 'account.update_password',
+            'uses' => 'AdminController@updatePassword'
+        ]);
+
     });
 
 /*===============================================*/

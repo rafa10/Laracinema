@@ -54,8 +54,10 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
-
+    "from" => array(
+        "address" => "rafa.10@live.fr",
+        "name" => "rafa"
+    ),
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol

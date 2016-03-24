@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 
@@ -37,11 +38,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('/home');
     }
 
     public function dashboard()
     {
+//        Mail::send('emails.reminder', [], function ($m) use ($user) {
+//
+//            $m->to($user->email, $user->name)->subject('Your Reminder!');
+//        });
+
         $totalMovies    = Movies::all();
         $totalCategories = Categories::all();
         $totalActors = Actors::all();
@@ -127,21 +133,8 @@ class HomeController extends Controller
     }
 
 
-//    public function authenticate(){
-//
-//        return view("/login");
-//
-//    }
 
-    protected function profile()
-    {
-        return view('administrator/profile');
-    }
 
-    protected function settings()
-    {
-        return view('administrator/settings');
-    }
 
 
 }

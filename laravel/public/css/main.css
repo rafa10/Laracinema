@@ -2,7 +2,7 @@ body{
     background-color: #e0e0e0;
 }
 
-nav{
+.header{
     z-index: 1000;
     position: fixed;
     background-color: #1b39a8 !important;
@@ -122,8 +122,13 @@ small{
 
 }
 
+.help-block{
+    padding: 0px 45px;
+    font-size: 0.8rem;
+}
 
 
+/*================search barre==================*/
 
 
 
