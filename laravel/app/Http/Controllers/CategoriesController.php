@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\File;
@@ -57,6 +58,11 @@ class CategoriesController extends Controller
         $categories = Categories::create($request->all());
         $categories->image = asset('uploads/categories/'.$fileName);
         $categories->save();
+
+//        Mail::send('notification.email', ['categories' => $categories], function($message) use ($categories){
+//                $message->form('hello@app.com', 'Laracinema');
+//                $message->to('rafa.10@live.fr', $categories->title)->subject('Your reminder');
+//        });
 
         Session::flash('create', 'Catégorie successfully added!');
 

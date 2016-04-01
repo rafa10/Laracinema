@@ -32,7 +32,7 @@
             <td>{{$directors->lastname}}</td>
             <td>{{$directors->dob}}</td>
             <td>{{$directors->note}}</td>
-            <td><img src="{{$directors->image}}" width="100" height="120"></td>
+            <td><img class="circle" src="{{$directors->image}}" width="80" height="80"></td>
             <td><a class="btn-floating btn-large waves-effect waves-light red" href="{{route('directors_destroy', $directors->id)}}"><i class="small material-icons">delete</i></a></td>
         </tr>
         </tbody>

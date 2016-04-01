@@ -42,7 +42,7 @@
         <div class="row">
             <div class="file-field input-field col s12">
                 <div class="hide center">
-                    <img id="img" src="#" width="90" height="120" alt="uplode image">
+                    <img class="circle" id="img" src="#" width="90" height="90" alt="uplode image">
                 </div>
                 <div class="btn">
                     <span>Image</span>

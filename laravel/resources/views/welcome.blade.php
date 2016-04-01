@@ -110,7 +110,7 @@
             <div class="card center">
                 <div class="card-content cyan lighten-1 white-text">
                     <p class="card-stats-title"><i class="medium material-icons">class</i></p>
-                    <h4 class="card-stats-number">{{$moyNote}}/{{count($totalMovies)}}</h4>
+                    <h4 class="card-stats-number">{{round($moyNote,2)}}/{{count($totalMovies)}}</h4>
                     <p class="card-stats-compare"><span class="deep-purple-text text-lighten-5">Moyenne de note</span>
                     </p>
                 </div>

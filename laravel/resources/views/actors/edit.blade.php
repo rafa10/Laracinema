@@ -45,8 +45,8 @@
 
         <div class="row">
             <div class="input-field col s12">
+                {{Form::date('dob', $actors->dob, array('class' => 'validate'))}}
                 {{Form::label('dob', 'Dob')}}
-                {{Form::date('dob', $actors->dob, array('class' => 'datepicker'))}}
             </div>
             <div class="input-field col s12">
                 {{Form::label('city', 'City')}}

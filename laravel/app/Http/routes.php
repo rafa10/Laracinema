@@ -26,6 +26,38 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 
 
+/*=========== routing de page contact ============*/
+
+    Route::get('/contact', [
+        'as' => 'contact.email',
+        'uses' => 'HomeController@formContact'
+    ]);
+
+    Route::post('/sendMail', [
+        'as' => 'send.email',
+        'uses' => 'HomeController@sendMail'
+    ]);
+
+
+/*=========== routing de page search ============*/
+
+
+    // route "any" c.a.d le route soit en "GET" ou en "POST"
+    Route::any('/search',[
+        'as'   => 'search',
+        'uses' => 'SearchController@search'
+    ]);
+
+
+/*===============================================*/
+/*=========== routing controller payment ============*/
+/*===============================================*/
+
+    Route::get('/payment',[
+        'as'   => 'payment',
+        'uses' => 'PaymentController@checkout'
+    ]);
+
 /*===============================================*/
 /*=========== routing de page account ===========*/
 /*===============================================*/
@@ -182,6 +214,7 @@ Route::group(['middleware' => ['web']], function () {
             'as'   => 'categories_destroy',
             'uses' => 'CategoriesController@destroy'
         ])->where('id', '[0-9]+');
+
 
     });
 

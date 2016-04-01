@@ -161,7 +161,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-
+        /*
+         * Api paypal
+         */
+        Netshell\Paypal\PaypalServiceProvider::class,
 
     ],
 
@@ -210,6 +213,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'Paypal'    => Netshell\Paypal\Facades\Paypal::class,
     ],
 
 ];

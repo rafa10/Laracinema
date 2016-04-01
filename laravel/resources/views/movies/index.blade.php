@@ -44,7 +44,7 @@
             <th data-field="Image">&nbsp;</th>
             <th data-field="Image">Image</th>
             <th data-field="Type">Type</th>
-            <th data-field="Title">Title</th>
+            <th data-field="Title"><a href="">Title<i class="mdi-navigation-arrow-drop-down"></i></a></th>
             <th data-field="Title">Categories</th>
             <th data-field="Description">Description</th>
             <th data-field="langue">Langue</th>

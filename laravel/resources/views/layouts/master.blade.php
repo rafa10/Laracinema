@@ -61,8 +61,8 @@
                     </ul>
                 @endif
             </li>
-            <li><a href="#" class="upper"><i class="material-icons">movie</i></a></li>
-            <li><a href="#" class="upper"><i class="material-icons">language</i></a></li>
+            <li><a href="{{route('payment')}}" class="upper"><i class="mdi-action-payment"></i></a></li>
+            <li><a href="{{route('contact.email')}}" class="upper"><i class="mdi-communication-forum"></i></a></li>
             <li><a class='dropdown-button upper' href='#' data-activates='dropdown1'><i class="mdi-action-account-circle"></i></a>
                 <!-- Dropdown Structure -->
                 <ul id='dropdown1' class='dropdown-content'>
@@ -72,7 +72,7 @@
                     <li class="divider"></li>
                     <li><a class="center" href="{{url('/logout')}}"><i class="mdi-hardware-keyboard-tab"></i>Logout</a></li>
                 </ul>
-            </i>
+            </li>
         </ul>
     </div>
 </nav>
@@ -92,13 +92,15 @@
                 <div class="col s12"><br>
                     <nav>
                         <div class="nav-wrapper">
-                            <form>
+                            {{Form::open(array('url'=> route('search'), 'method' => 'GET'))}}
                                 <div class="input-field white">
-                                    <input id="search" type="search" required>
+                                    <input id="search" type="search" name="search" placeholder="Search" required>
                                     <label for="search"><i class="material-icons black-text ">search</i></label>
                                     <i class="material-icons">close</i>
                                 </div>
-                            </form>
+                                {{Form::submit('search')}}
+                            {{Form::token()}}
+                            {{Form::close()}}
                         </div>
                     </nav>
                 </div>

@@ -23,7 +23,7 @@ class MoviesController extends Controller
      */
     public function index(Request $request)
     {
-        $movies = Movies::all();//paginate(5);
+        $movies = Movies::all();
 
 //      pour affichier les catigorires dans film
         $categories = Movies::find(3)->categories;
@@ -314,6 +314,14 @@ class MoviesController extends Controller
         return Redirect::route('movies_index');
     }
 
+
+    public function sorts($val)
+    {
+        $movies = DB::table('movies')->orderby($val, 'desc')->get();
+
+        return view(" movies/index ", compact('movies'));
+
+    }
 
 
 }

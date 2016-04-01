@@ -15,7 +15,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 
@@ -132,7 +134,29 @@ class HomeController extends Controller
         ));
     }
 
+    public function formContact()
+    {
+        return view('/contact');
+    }
 
+
+    public function sendMail(Requests\ContactRequest $request)
+    {
+        $contact  = $request->all();
+
+//        dd($contact['name']);
+
+        Mail::send('emails/notification', ['contact' => $contact], function ($message) use ($contact) {
+            $message->from($contact['email'], 'laracinema');
+            $message->to('laracinema@app.com', 'admin')->subject($contact['subject']);
+        });
+
+        Session::flash('mail', 'Your mail successfully sended');
+
+        return Redirect::route('contact.email');
+
+
+    }
 
 
 
